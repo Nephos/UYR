@@ -1,4 +1,4 @@
-import cv2.cv as cv
+import cv2
 import sys
 
 class SteganographyException(Exception):
@@ -7,10 +7,8 @@ class SteganographyException(Exception):
 class LSBSteg():
     def __init__(self, im):
         self.image = im
-        self.width = im.width
-        self.height = im.height
+        self.height, self.width, self.nbchannels = im.shape
         self.size = self.width * self.height
-        self.nbchannels = im.channels
         
         self.maskONEValues = [1,2,4,8,16,32,64,128]
         #Mask used to put one ex:1->00000001, 2->00000010 .. associated with OR bitwise
@@ -26,8 +24,7 @@ class LSBSteg():
      
     def saveImage(self,filename):
     # Save the image using the given filename
-        cv.SaveImage(filename, self.image)
-                    
+        cv2.imwrite(filename, self.image)
 
     def putBinaryValue(self, bits): #Put the bits in the image
         for c in bits:

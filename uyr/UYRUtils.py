@@ -15,10 +15,10 @@ try:
 except ImportError:
     print "Hide Module: Sorry cv2 module not found"
 
-try:
-    import cv2.cv as cv
-except ImportError:
-    print "Hide Module: Sorry module cv2.cv not found"
+# try:
+#     import cv2.cv as cv
+# except ImportError:
+#     print "Hide Module: Sorry module cv2.cv not found"
 
 def hOpenImgBinary(imgfileName):
     '''Open an Image file in binary mode and return the handler'''

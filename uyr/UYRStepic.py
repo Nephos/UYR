@@ -23,10 +23,10 @@ try:
 except ImportError:
     print "Hide Module: Sorry cv2 module not found"
 
-try:
-    import cv2.cv as cv
-except ImportError:
-    print "Hide Module: Sorry module cv2.cv not found"
+# try:
+#     import cv2.cv as cv
+# except ImportError:
+#     print "Hide Module: Sorry module cv2.cv not found"
 
 
 positionList = []

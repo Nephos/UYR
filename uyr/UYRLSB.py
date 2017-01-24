@@ -9,6 +9,7 @@ import shutil
 import UYRUtils
 
 try:
+    # sys.path.append("/tmp/UYR/uyr")
     from LSBSteg import LSBSteg
 except ImportError:
     print "Hide Module: Sorry module LSBSteg not found"
@@ -18,10 +19,10 @@ try:
 except ImportError:
     print "Hide Module: Sorry cv2 module not found"
 
-try:
-    import cv2.cv as cv
-except ImportError:
-    print "Hide Module: Sorry module cv2.cv not found"
+# try:
+#     import cv2.cv as cv
+# except ImportError:
+#     print "Hide Module: Sorry module cv2.cv not found"
 
 
 positionList = []
@@ -59,9 +60,9 @@ def hideMessage(secretMessage, path2Video, path2Image, msgLength=0, videoLength=
 
     while enoughSize:       # extracting frames
         vidcap = cv2.VideoCapture(path2Video)                        #print ("success")
-    
-        frameNumbers = vidcap.get(cv.CV_CAP_PROP_FRAME_COUNT)     #print ( frameNumbers )
-        fps = vidcap.get(cv.CV_CAP_PROP_FPS)                    #print ( fps )
+
+        frameNumbers = vidcap.get(cv2.CAP_PROP_FRAME_COUNT)     #print ( frameNumbers )
+        fps = vidcap.get(cv2.CAP_PROP_FPS)                    #print ( fps )
         videoLength = frameNumbers / fps    # seconds             #print ( videoLength )
 
         count = 0
@@ -107,7 +108,7 @@ def hideMessage(secretMessage, path2Video, path2Image, msgLength=0, videoLength=
     imgNameJPG = pathList[-1]
     imgName = imgNameJPG.split(".")
 
-    carrier = cv.LoadImage(path2Image)
+    carrier = cv2.imread(path2Image)
     steg = LSBSteg(carrier)
     steg.hideText(dataEm)
     imgNamePNG = imgName[0]+".png"
@@ -120,7 +121,7 @@ def hideMessage(secretMessage, path2Video, path2Image, msgLength=0, videoLength=
 ######################################################################################################
 def extractMSG(path2Image, path2Video):
     # Extract from picture
-    im = cv.LoadImage(path2Image)
+    im = cv2.imread(path2Image)
     steg = LSBSteg(im)
     s = steg.unhideText()
 
